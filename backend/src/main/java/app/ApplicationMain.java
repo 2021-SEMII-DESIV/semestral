@@ -30,20 +30,19 @@ public class ApplicationMain {
       return jo;
     });
 
-    // post("/estudiantes", (req, res) -> {
-    //   res.type("application/json");
-    //   JSONObject body = new JSONObject(req.body());
-    //   Student student = new Student();
-    //   if(!body.has("name") && !body.has("age")){
-    //       return "Invalid request";
-    //   }
-    //   student.setName(body.getString("name"));
-    //   student.setAge(body.getInt("age"));
-    //   student.setGrades(getGradesFromJSONArray(body.getJSONArray("grades")));
-    //   group.addStudent(student);
-    //   JSONObject jo = new JSONObject(group);
-    //   return jo;
-    // });
+    post("/estudiantes", (req, res) -> {
+      res.type("application/json");
+      JSONObject body = new JSONObject(req.body());
+      Student student = new Student();
+      if(!body.has("name")){
+          return "Invalid request";
+      }
+      student.setName(body.getString("name"));
+      student.setGrades(getGradesFromJSONArray(body.getJSONArray("grades")));
+      group.addStudent(student);
+      JSONObject jo = new JSONObject(group);
+      return jo;
+    });
   }
 
   public static void enableCors() {

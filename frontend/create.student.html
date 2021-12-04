@@ -20,15 +20,36 @@
         </section>
         <section class="page-content">
             <div class="form-container"> 
-                <form action="">
+                <form id="createStudent">
                     <label for="">
                         Nombre:
                     </label>
-                    <input type="text">
-                    <button class="form-save-btn" type="submit">Guardar</button>
+                    <input name="name" type="text">
+                    <div class="form-group-container">
+                        <div  class="form-group">
+                            <label style="margin-top: 1.5rem;" for="">
+                                Nota #1:
+                            </label>
+                            <input name="grades[]" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-top: 1.5rem;" for="">
+                                Nota #2:
+                            </label>
+                            <input name="grades[]" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-top: 1.5rem;" for="">
+                                Nota #3:
+                            </label>
+                            <input name="grades[]" type="text">
+                        </div>
+                    </div>
+                    <button style="margin-top: 3rem;" class="form-save-btn" type="submit">Guardar</button>
                 </form>
             </div>
         </section>
     </main>
+    <script src="create.student.js"></script>
 </body>
 </html>
