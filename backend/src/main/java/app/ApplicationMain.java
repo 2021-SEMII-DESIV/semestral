@@ -21,11 +21,15 @@ public class ApplicationMain {
   public static void main(String[] args) {
     BasicConfigurator.configure();
     Group group = createGroup();
+    // Enable CORS
+    enableCors();
+  
     get("/estudiantes", (req, res) -> {
       res.type("application/json");
       JSONObject jo = new JSONObject(group);
       return jo;
     });
+
     // post("/estudiantes", (req, res) -> {
     //   res.type("application/json");
     //   JSONObject body = new JSONObject(req.body());
@@ -40,6 +44,25 @@ public class ApplicationMain {
     //   JSONObject jo = new JSONObject(group);
     //   return jo;
     // });
+  }
+
+  public static void enableCors() {
+    options("/*", (request, response) -> {
+
+      String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+      if (accessControlRequestHeaders != null) {
+        response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+      }
+
+      String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+      if (accessControlRequestMethod != null) {
+        response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+      }
+
+      return "OK";
+    });
+
+    before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
   }
 
   public static List<Integer> getGradesFromJSONArray(JSONArray _grades){
